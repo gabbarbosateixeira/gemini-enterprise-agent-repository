@@ -8,8 +8,8 @@ Our goal is to help enterprise customers accelerate their AI journey by providin
 
 ## 🚀 Available Agents
 
-
 *(Catalog coming soon!)*
+
 * **Sales & RFP Assistant:** Automate responses to complex RFPs using your enterprise data.
 * **Marketing Campaign Generator:** Create multi-channel marketing copy grounded in your brand guidelines.
 
