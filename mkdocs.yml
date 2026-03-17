@@ -1,0 +1,12 @@
+site_name: Gemini Enterprise Agent Repository
+site_description: Production-ready Gemini agents for Google Cloud customers.
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: blue
+  font:
+    text: Roboto
+    code: Roboto Mono
+nav:
+  - Home: index.md
