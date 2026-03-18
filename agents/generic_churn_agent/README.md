@@ -11,12 +11,14 @@ This agent is 100% data-agnostic. It does not contain hardcoded database columns
 To ensure you have the proper authenticated environment, we recommend deploying this directly from Google Cloud Shell.
 
 1. Open the [Google Cloud Console](https://console.cloud.google.com/).
+
 2. Click the **Activate Cloud Shell** icon (the terminal symbol) in the top right corner.
 3. In the terminal, clone this repository and navigate to the agent folder:
    ```bash
    git clone https://github.com/YOUR-GITHUB-USERNAME/gemini-enterprise-agent-repository.git
 
    cd gemini-enterprise-agent-repository/agents/generic_churn_agent
+
 
 ## 🛠️ Step 2: Configure Your Data Schema
 You must tell the agent where your data lives and what the columns are named.
@@ -62,3 +64,39 @@ adk deploy --project=$GOOGLE_CLOUD_PROJECT --region=$GOOGLE_CLOUD_LOCATION
 
 
 *(Note: Make sure to replace `YOUR_GITHUB_USERNAME` in the README clone URL with your actual username before committing).*
+
+# 💡 Customization Examples
+Because this agent separates the code from the configuration, you can easily adapt it to entirely different business use cases just by modifying the .env file. You do not need to rewrite the Python code.
+
+1. Example 1: Retail & E-Commerce (Cart Abandonment)
+
+* BQ_TABLE_ID=ecommerce_users
+
+* BQ_IDENTIFIER_COLUMN=user_account_id
+
+* BQ_METRIC_COLUMNS=items_in_cart, days_since_last_purchase, lifetime_value_usd
+
+* AGENT_OBJECTIVE="Your goal is to identify users likely to abandon their shopping carts and draft targeted discount emails."
+
+2. Example 2: Gaming & Entertainment (Player Drop-off)
+
+* BQ_TABLE_ID=player_statistics
+
+* BQ_IDENTIFIER_COLUMN=gamer_tag
+
+* BQ_METRIC_COLUMNS=hours_played_weekly, current_level, premium_currency_balance
+
+* AGENT_OBJECTIVE="Your goal is to identify players who are losing engagement and suggest in-game rewards to retain them."
+
+3. Example 3: Logistics & Supply Chain (Vendor Risk)
+
+* BQ_TABLE_ID=supplier_metrics
+
+* BQ_IDENTIFIER_COLUMN=vendor_name
+
+* BQ_METRIC_COLUMNS=average_delay_days, defective_parts_ratio, contract_value
+
+* AGENT_OBJECTIVE="Your goal is to assess supplier reliability, synthesize their performance data with recent email complaints, and draft vendor review notices."
+
+
+*(Don't forget to swap out the `YOUR_GITHUB_USERNAME` placeholder in the clone URL!)*
