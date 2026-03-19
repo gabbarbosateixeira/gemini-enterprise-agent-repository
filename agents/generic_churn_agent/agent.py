@@ -5,8 +5,9 @@ from google.cloud import bigquery
 from google.cloud import storage
 from google.adk.agents import LlmAgent
 
-# Load environment variables from the .env file
-load_dotenv()
+# CRITICAL FIX: Robustly load the .env file from the exact directory this script lives in
+current_dir = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(current_dir, ".env"))
 
 # ==========================================
 # 1. DYNAMIC BIGQUERY TOOL (Structured Data)
@@ -119,7 +120,6 @@ def find_accounts_by_condition(sql_where_clause: str, limit: int = 5) -> str:
 # ==========================================
 # 4. AGENT ASSEMBLY 
 # ==========================================
-# Note: Instructions are generated dynamically based on the .env file
 dynamic_instruction = f"""
 {os.environ.get('AGENT_ROLE')} {os.environ.get('AGENT_OBJECTIVE')}
 
@@ -133,7 +133,8 @@ Follow these rules:
 3. Synthesize the data you gather to determine if they are a churn risk and draft personalized outreach.
 """
 
-churn_agent = LlmAgent(
+# CRITICAL FIX: The ADK runner specifically looks for an instance assigned to the variable 'agent'
+agent = LlmAgent(
     name="GenericChurnAgent",
     model="gemini-2.5-pro", 
     instruction=dynamic_instruction, 
