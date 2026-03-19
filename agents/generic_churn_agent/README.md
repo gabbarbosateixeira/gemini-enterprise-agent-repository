@@ -26,12 +26,12 @@ You must tell the agent where your data lives and what the columns are named.
 1. Create your active configuration file by copying the template:
 
 ```Bash
-cp generic_churn_agent/.env.template generic_churn_agent/.env
+cp .env.template .env
 ```
 2. Open the file in the Cloud Shell Editor:
 
 ```Bash
-edit generic_churn_agent/.env
+edit .env
 ```
 3. **CRITICAL**: Update the GOOGLE_CLOUD_PROJECT, BQ_DATASET_ID, BQ_TABLE_ID, BQ_IDENTIFIER_COLUMN, and BQ_METRIC_COLUMNS variables to perfectly match your Google Cloud environment.
 
