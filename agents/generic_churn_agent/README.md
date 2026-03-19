@@ -41,11 +41,13 @@ Before deploying to production, verify the agent is working correctly using the 
 1. Install the required dependencies:
 
 ```Bash
-pip install -r generic_churn_agent/requirements.txt
+pip install -r requirements.txt
 ```
 2. Start the local ADK interface:
 
 ```Bash
+cd..
+
 adk web
 ```
 3. Cloud Shell will provide a "Web Preview" link. Click it to open the ADK UI in your browser. You can now chat with your agent and visually inspect its tool calls and reasoning process in real-time.
