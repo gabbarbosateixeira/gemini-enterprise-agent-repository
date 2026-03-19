@@ -26,12 +26,12 @@ You must tell the agent where your data lives and what the columns are named.
 1. Create your active configuration file by copying the template:
 
 ```Bash
-cp .env.template .env
+cp generic_churn_agent/.env.template generic_churn_agent/.env
 ```
 2. Open the file in the Cloud Shell Editor:
 
 ```Bash
-edit .env
+edit generic_churn_agent/.env
 ```
 3. **CRITICAL**: Update the GOOGLE_CLOUD_PROJECT, BQ_DATASET_ID, BQ_TABLE_ID, BQ_IDENTIFIER_COLUMN, and BQ_METRIC_COLUMNS variables to perfectly match your Google Cloud environment.
 
@@ -41,25 +41,28 @@ Before deploying to production, verify the agent is working correctly using the 
 1. Install the required dependencies:
 
 ```Bash
-pip install -r requirements.txt
+pip install -r generic_churn_agent/requirements.txt
 ```
 2. Start the local ADK interface:
 
 ```Bash
-adk dev
+adk web
 ```
 3. Cloud Shell will provide a "Web Preview" link. Click it to open the ADK UI in your browser. You can now chat with your agent and visually inspect its tool calls and reasoning process in real-time.
 
 ## ☁️ Step 4: Deploy to Vertex AI Agent Engine
 Once you are satisfied with the local testing, deploy the agent to Google Cloud's managed Vertex AI Agent Engine for production scaling.
 
+Press Ctrl+C in your terminal to stop the local web server.
+
 1. Ensure your Google Cloud Project has the required APIs enabled (Vertex AI API, Cloud Build API, Cloud Run API).
 
 2. Run the ADK deployment command:
 
 ```Bash
-adk deploy --project=$GOOGLE_CLOUD_PROJECT --region=$GOOGLE_CLOUD_LOCATION
+adk deploy agent_engine --project=$GOOGLE_CLOUD_PROJECT --region=$GOOGLE_CLOUD_LOCATION ./generic_churn_agent
 ```
+
 3. The CLI will package your agent, containerize it, and deploy it to Vertex AI. It will output a secure endpoint URL once the deployment is successful.
 
 
